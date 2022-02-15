@@ -1,0 +1,27 @@
+{
+  "name": "yallagroup/admin-yallacolors-theme",
+  "type": "yallagroup-theme",
+  "description": "A yallagroup default admin theme",
+  "keywords": [
+    "yallagroup"
+  ],
+  "version": "master",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "YallaGroup Development Team",
+      "email": "info@yallagroup.biz",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.3.0",
+    "yallagroup/laravel-installer": "0.2.*"
+  },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+  "minimum-stability": "dev"
+}
