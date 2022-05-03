@@ -13,20 +13,20 @@ class CreateNewsTranslationsTable extends Migration
 	 */
 	public function up()
 	{
+        if (! Schema::hasTable('news_translations')) {
+            Schema::create('news_translations', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('news_id')->unsigned();
+                $table->string('title')->nullable();
+                $table->mediumText('description')->nullable();
+                //$table->schemalessAttributes('extra_data');
+                $table->string('locale');
+                $table->tinyInteger('enabled')->unsigned()->default(1);
 
-		Schema::create('news_translations', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->integer('news_id')->unsigned();
-			$table->string('title')->nullable();
-			$table->mediumText('description')->nullable();
-            //$table->schemalessAttributes('extra_data');
-			$table->string('locale');
-			$table->tinyInteger('enabled')->unsigned()->default(1);
-
-            $table->unique(['news_id','locale']);
-            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
-		});
+                $table->unique(['news_id', 'locale']);
+                $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
+            });
+        }
 
 	}
 
