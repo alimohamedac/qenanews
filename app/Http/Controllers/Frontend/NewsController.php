@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    public $paginationNum = 20;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,12 @@ class NewsController extends Controller
     public function index()
     {
         //latest
+        $items = News::query()
+        ->withoutGlobalScopes([MainSelectAttributes::class, HasEagerLoadedAttributes::class])  //=> because some attribute don't appear like media_url
+        ->with(['translations:title,description,news_id,locale'])
+        ->paginate($this->paginationNum);
+
+        return view('blog.index', compact('items'));
     }
 
     /**

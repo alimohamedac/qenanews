@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
                 $table->string('twitterUrl')->nullable();
                 $table->string('instagramUrl')->nullable();
                 $table->text('note')->nullable();
-                //$table->schemalessAttributes('extra_attributes');
+                $table->schemalessAttributes('extra_attributes');
                 $table->tinyInteger('isConfirmed')->unsigned()->default(1);
                 $table->tinyInteger('isProtected')->unsigned()->default(0);
                 $table->tinyInteger('status')->unsigned()->default(1)->index();

@@ -39,7 +39,7 @@ class CreateNewsTable extends Migration
                 $table->integer('area_id')->unsigned()->nullable();
                 $table->text('address')->nullable();
 
-                //$table->schemalessAttributes('extra_attributes');
+                $table->schemalessAttributes('extra_attributes');
 
                 $table->tinyInteger('showInHomePage')->unsigned()->default(1);
                 $table->tinyInteger('is_pinned')->unsigned()->default(0);

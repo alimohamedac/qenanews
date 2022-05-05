@@ -19,7 +19,7 @@ class CreateNewsTranslationsTable extends Migration
                 $table->integer('news_id')->unsigned();
                 $table->string('title')->nullable();
                 $table->mediumText('description')->nullable();
-                //$table->schemalessAttributes('extra_data');
+                $table->schemalessAttributes('extra_data');
                 $table->string('locale');
                 $table->tinyInteger('enabled')->unsigned()->default(1);
 
