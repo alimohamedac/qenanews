@@ -49,13 +49,13 @@ class News extends Model implements TaxonomizableContract
     {
         parent::boot();
 
-        if (! App\Helpers\AppHelper::isInAdmin()) {
+        if (! isInAdmin()) {
             static::addGlobalScope(new MainSelectAttributes());
         }
 
         //static::addGlobalScope(new WherePublished());
 
-        if (! App\Helpers\AppHelper::isInAdmin()) {
+        if (! isInAdmin()) {
             static::addGlobalScope(new HasEagerLoadedAttributes());
            // static::addGlobalScope(new WhereCountry());
 
