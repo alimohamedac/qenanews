@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
-use Modules\Websites\Entities\Website;
-use Modules\Websites\Enum\WebsiteStatus;
+use App\Models\Website;
 
 class WebsiteService
 {
@@ -33,6 +31,30 @@ class WebsiteService
         }
 
         return $this->current;
+    }
+
+    public function getCurrent()
+    {
+        if (app()->runningInConsole() && !$this->websiteIdentifier) {
+            $this->websiteIdentifier = 1;
+        }
+
+        try {
+            $expiresAt = now()->addMonths(1);
+            $websiteIdentifier = $this->websiteIdentifier ?: $this->domain;
+            $website = Cache::remember('Website.'. $websiteIdentifier, $expiresAt, function () {
+                return $this->getWebsite();
+            });
+        } catch (\Exception $e) {
+            info($e->getMessage());
+            $website = $this->getWebsite();
+        }
+
+        if (!$website && ! app()->runningInConsole()){
+            $this->websiteNotFound();
+        }
+
+        return $website;
     }
 
     private function getWebsite()
