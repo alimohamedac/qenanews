@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        //return view('blog.home');
+        return view('yallacolors.views.index');
     }
 
     public function setting(Request $request): string

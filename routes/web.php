@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//front
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/news', [NewsController::class, 'index']);
+
+//admin
+Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class, 'index']);
